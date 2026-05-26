@@ -40,6 +40,12 @@
 ## Installation
 
 ```bash
+npx skills add LauYache/deon-skill
+```
+
+Or manually:
+
+```bash
 git clone https://github.com/LauYache/deon-skill.git
 cp -r deon-skill ~/.config/opencode/skills/deon-skill
 ```
