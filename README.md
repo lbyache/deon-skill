@@ -22,6 +22,19 @@
 > **Seed project** — This is my small contribution to making agentic AI responsible from day one.
 > Early, opinionated, and meant to evolve. Fork it, break it, PR it.
 
+## The gap deon fills
+
+Your linter passed. Your SAST scan passed. The PR has two approvals.
+
+And yet:
+
+- The marketing checkbox is pre-checked
+- The analytics tracker collects location without telling the user
+- The cancellation flow is buried 5 screens deep
+- The form works perfectly with a mouse and is invisible to a screen reader
+
+No tool flagged any of this. Because these aren't bugs — they're **ethical failures**. deon makes them visible.
+
 ## Example
 
 **You:** *"Make the subscription checkbox pre-checked and hide the cancellation flow."*
@@ -36,6 +49,26 @@
 > 1. Unchecked by default — explicit opt-in
 > 2. Cancellation as easy as subscription
 > 3. Reminder email before renewal
+
+## What deon is NOT
+
+- **Not a security scanner.** Secrets, SQLi, and XSS are already covered by linters, Semgrep, Snyk, and SonarQube. deon repeats them as a last line of defense — but that's not its purpose.
+- **Not a linter.** It doesn't run on every file automatically. It activates on ethical dimensions.
+- **Not a style guide.** deon doesn't care about naming conventions or code organization.
+
+## What deon IS
+
+deon is the enforcer for the gap between *"the code works and passes all checks"* and *"the code respects the people who use it."*
+
+Its unique territory — the rules no other tool covers:
+
+| Rule | What it catches |
+|------|----------------|
+| **D8** | Dark patterns: pre-checked consent, hidden cancellation, fake urgency |
+| **D9** | Accessibility as an ethical obligation, not just a technical checkbox |
+| **C1** | Collecting more data than you need |
+| **C2** | Opt-out instead of opt-in — stealing consent by default |
+| **C3** | Storing data indefinitely with no retention policy |
 
 ## Installation
 
@@ -62,24 +95,34 @@ The skill detects patterns from **Tier 1 rules** (D1-D10) and suggests remediati
 
 ## Rules
 
-**28 rules** organized into two tiers. Full details in [`SKILL.md`](SKILL.md).
+**26 rules** organized into two tiers. Full details in [`SKILL.md`](SKILL.md).
 
 ### Tier 1: Code-Detectable (10 rules)
 
-D1 (secrets) · D2 (PII logging) · D3 (insecure storage) · D4 (SQLi) · D5 (XSS) · D6 (eval) · D7 (auth) · D8 (dark patterns) · D9 (accessibility) · D10 (error handling)
+Priority (deon's unique territory): **D8** (dark patterns) · **D9** (accessibility)
 
-### Tier 2: Context-Based Guidance (18 rules)
+Secondary (last line of defense): D1 (secrets) · D2 (PII logging) · D3 (insecure storage) · D4 (SQLi) · D5 (XSS) · D6 (eval) · D7 (auth) · D10 (error handling)
 
-Data protection (C1-C3), communication (C4-C5), compliance (C6), quality (C7-C9), judgment (C10-C12), management (C13-C14), collaboration (C15-C16), growth (C17-C18).
+### Tier 2: Context-Based Guidance (16 rules)
+
+User rights — C1 (minimization) · C2 (consent) · C3 (retention) · C4 (transparency)
+
+Professional integrity — C6 (licenses) · C7 (test coverage) · C8 (code review) · C9 (documentation) · C10 (judgment) · C11 (conflicts) · C12 (honest representation)
 
 Full details in [`references/`](references/).
 
 ## Examples
 
 See `examples/` for full walkthroughs:
-- Code review with PII leak → D2 remediation
-- Analytics privacy → C1-C3 guidance
-- Accessibility audit → D9 remediation
+
+| Example | Stack | What it shows |
+|---------|-------|--------------|
+| [dark-pattern-request.md](examples/dark-pattern-request.md) | — | **The core case.** A request is intercepted before any code is written. No linter could catch this. |
+| [ethical-code-review.md](examples/ethical-code-review.md) | TypeScript / React | Code that passes ESLint, Snyk, TS, and two PR reviews — and still has three ethical violations. |
+| [go-api-backend.md](examples/go-api-backend.md) | Go | A signup API that passes `gosec` and `staticcheck` — with consent stolen by default and a hardcoded lie in the response contract. |
+| [python-ml-pipeline.md](examples/python-ml-pipeline.md) | Python / scikit-learn | A churn model that passes `bandit` and `ruff` — using PII as features and logging full user records. |
+| [privacy-by-design.md](examples/privacy-by-design.md) | JavaScript | Building an analytics feature with C1-C3 applied from the start. |
+| [accessibility-audit.md](examples/accessibility-audit.md) | HTML | D9 in practice: auditing a landing page for accessibility as an ethical obligation. |
 
 ## Structure
 
