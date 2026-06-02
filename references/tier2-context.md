@@ -2,23 +2,29 @@
 
 These rules require human judgment. The agent suggests best practices but cannot detect violations automatically.
 
-| Rule | Guidance | Severity |
-|------|----------|----------|
-| **C1** | Data minimization — collect only what you need | High |
-| **C2** | Explicit consent — opt-in, not opt-out | High |
-| **C3** | Data retention — define periods, auto-delete, allow user deletion | Medium |
-| **C4** | Transparent communication — document limitations and risks | Medium |
-| **C5** | Realistic commitments — estimate with buffers, flag impossible deadlines | Medium |
-| **C6** | License compliance — verify licenses, attribute authors | Medium |
-| **C7** | Test coverage — >70% on business logic, test error paths | Medium |
-| **C8** | Code review — at least one reviewer, two for security/auth | Medium |
-| **C9** | Documentation — APIs, ADRs, inline comments for complex logic | Medium |
-| **C10** | Independent judgment — base decisions on technical merit | Medium |
-| **C11** | Conflict disclosure — disclose biases when making recommendations | Medium |
-| **C12** | Honest representation — acknowledge limitations, don't exaggerate | Medium |
-| **C13** | Ethical management — reward ethics, safe reporting channels | Medium |
-| **C14** | Competence-based assignment — match tasks to skills, provide training | Medium |
-| **C15** | Respectful collaboration — constructive feedback, credit others | Medium |
-| **C16** | Knowledge sharing — document, mentor, prevent silos | Medium |
-| **C17** | Continuous learning — stay current, learn from failures | Low |
-| **C18** | Work-life balance — sustainable pace, respect boundaries | Low |
+Rules are organized by whether they're detectable from a feature request (design-time) or from existing code (review-time).
+
+## User Rights (Design-time — check before building)
+
+| Rule | What to check | Severity |
+|------|--------------|----------|
+| **C1** | Data minimization — is every field you're collecting necessary for the stated purpose? | High |
+| **C2** | Explicit consent — is tracking/collection opt-in? Is consent granular and revocable? | High |
+| **C3** | Data retention — is there a defined deletion period? Can users delete their own data? | Medium |
+| **C4** | Transparency — do users know what's collected and why, in plain language? | Medium |
+
+## Professional Integrity (Review-time — check when making recommendations)
+
+| Rule | What to check | Severity |
+|------|--------------|----------|
+| **C6** | License compliance — are all dependencies' licenses compatible? Are authors attributed? | Medium |
+| **C7** | Test coverage — is business logic covered? Are error paths tested? | Medium |
+| **C8** | Code review — does security/auth code have at least two reviewers? | Medium |
+| **C9** | Documentation — are public APIs, critical decisions, and non-obvious logic documented? | Medium |
+| **C10** | Independent judgment — are recommendations based on technical merit, not convenience? | Medium |
+| **C11** | Conflict disclosure — are biases or conflicts of interest acknowledged when advising? | Medium |
+| **C12** | Honest representation — are limitations acknowledged? No exaggerated capability claims? | Medium |
+
+---
+
+**Removed from Tier 2:** C5 (deadline estimation), C13 (management culture), C14 (task assignment), C15 (collaboration tone), C16 (knowledge sharing), C17 (continuous learning), C18 (work-life balance). These are valid professional values but belong in a team handbook, not a code ethics guardrail. Keeping them here diluted the signal for rules that actually apply to software artifacts.
